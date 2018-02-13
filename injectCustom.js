@@ -1,0 +1,37 @@
+const jsdom = require("jsdom");
+const {
+    JSDOM
+} = jsdom;
+const fs = require('fs-extra')
+
+module.exports = async function injectCustom(path) {
+    try {
+        const dom = await JSDOM.fromFile(path)
+
+        if (!dom.window.document.querySelector('link[href="custom.css"]')) {
+            const customCss = dom.window.document.createElement('link')
+            customCss.setAttribute('rel', 'stylesheet')
+            customCss.setAttribute('href', 'custom.css')
+            dom.window.document.head.appendChild(customCss)
+            console.log('Injected custom CSS into browser.html');
+        } else {
+            console.log('Custom CSS already injected into browser.html');
+        }
+        if (!dom.window.document.querySelector('script[src="custom.js"]')) {
+            const customJs = dom.window.document.createElement('script')
+            customJs.setAttribute('src', 'custom.js')
+            dom.window.document.body.appendChild(customJs)
+            console.log('Injected custom JS into browser.html');
+        } else {
+            console.log('Custom JS already injected into browser.html');
+        }
+
+        const html = dom.serialize()
+
+        fs.writeFile(path, html)
+
+        dom.window.close()
+    } catch (err) {
+        console.error(err)
+    }
+}

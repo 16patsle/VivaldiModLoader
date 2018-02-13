@@ -1,0 +1,17 @@
+{
+  "name": "vivaldi-modloader",
+  "version": "0.1.0",
+  "description": "Mod loader for the Vivaldi browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Sletvold",
+  "license": "MIT",
+  "dependencies": {
+    "brunch": "^2.10.12",
+    "fs-extra": "^5.0.0",
+    "jsdom": "^11.6.2",
+    "npm-run-script": "0.0.4"
+  }
+}

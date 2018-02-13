@@ -1,0 +1,4 @@
+* --Find Vivaldi framework folder automatically--
+* --Copy Brunch output and browser.html to vivaldi folder--
+* (Later) Add minification to brunch
+* (Later) Add support for other files, like images (+relevant minification)
