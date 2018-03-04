@@ -3,7 +3,7 @@
 A mod loader for the Vivaldi browser.
 
 To run:
-`node index.js`
+`node run.js`
 
 Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
 

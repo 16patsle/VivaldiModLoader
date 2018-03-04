@@ -4,7 +4,7 @@ const buildFiles = require('./buildFiles')
 const installFiles = require('./installFiles')
 const path = require('path')
 
-async function index() {
+module.exports = async function loadMods() {
     console.log('Started loading mods')
 
     await getBrowser()
@@ -17,5 +17,3 @@ async function index() {
 
     console.log('Finished!')
 }
-
-index()
