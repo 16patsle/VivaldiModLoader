@@ -6,7 +6,7 @@ program
   .command('install', 'install Vivaldi mods')
   .command('list','list Vivaldi mods')
   .command('add','add a mod')
-  .command('remove <mod>','remove a mod')
+  .command('remove','remove a mod. The mod file is deleted')
   .parse(process.argv)
 
   // if program was called with no arguments, show help.

@@ -23,7 +23,7 @@ module.exports = async function addMod(modFile) {
         if(err.message.indexOf('already exists') !== -1){
           console.log('Skipped ' + path.parse(modFile).base + '. It is already installed!')
         } else {
-          console.log(err.message)
+          console.error(err.message)
         }
       }
     } else if (Array.isArray(modFile)) {
@@ -43,7 +43,7 @@ module.exports = async function addMod(modFile) {
             if(err.message.indexOf('already exists') !== -1){
               console.log('Skipped ' + path.parse(file).base + '. It is already installed!')
             } else {
-              console.log(err.message)
+              console.error(err.message)
             }
           }
         } else {

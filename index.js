@@ -10,10 +10,10 @@ module.exports = async function loadMods(vivaldiPath) {
   try {
     console.log('Started loading mods')
 
-    if (!typeof vivaldiPath === "string") {
-      vivaldiPath = null
-    } else {
+    if (typeof vivaldiPath === "string") {
       vivaldiPath = path.normalize(vivaldiPath)
+    } else {
+      vivaldiPath = null
     }
 
     modPath = path.join(homedir, '.vivaldimods');
