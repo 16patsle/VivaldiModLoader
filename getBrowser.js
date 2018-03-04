@@ -2,18 +2,18 @@ const fs = require('fs-extra')
 const path = require('path')
 const getBrowserPath = require('./getBrowserPath')
 
-async function copyBrowserFile(browserPath) {
+async function copyBrowserFile(modPath, browserPath) {
     try {
-        await fs.copy(path.join(browserPath, 'browser.html'), path.join(__dirname, 'custom', 'browser.html'))
+        await fs.copy(path.join(browserPath, 'browser.html'), path.join(modPath, 'custom', 'browser.html'))
     } catch (err) {
         console.error(err)
     }
 }
 
-module.exports = async function getBrowser() {
+module.exports = async function getBrowser(modPath, customPath) {
     try {
-        const browserPath = await getBrowserPath()
-        await copyBrowserFile(browserPath)
+        const browserPath = customPath || await getBrowserPath()
+        await copyBrowserFile(modPath, browserPath)
         console.log('Fetched browser.html from ' + browserPath)
     } catch (err) {
         console.error(err)

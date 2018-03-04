@@ -10,20 +10,20 @@ async function backupBrowserFile(browserPath) {
     }
 }
 
-async function copyModFiles(browserPath) {
+async function copyModFiles(modPath, browserPath) {
     try {
-        await fs.copy(path.join(__dirname, 'custom'), path.join(browserPath))
+        await fs.copy(path.join(modPath, 'custom/'), path.join(browserPath))
     } catch (err) {
         console.error(err)
     }
 }
 
-module.exports = async function getBrowser() {
+module.exports = async function installFiles(modPath, customPath) {
     try {
-        const browserPath = await getBrowserPath()
+        const browserPath = customPath || await getBrowserPath()
         await backupBrowserFile(browserPath)
         console.log('Backed up browser.html to browser-backup.html before copying')
-        await copyModFiles(browserPath)
+        await copyModFiles(modPath, browserPath)
         console.log('Built mod files copied to ' + browserPath)
     } catch (err) {
         console.error(err)

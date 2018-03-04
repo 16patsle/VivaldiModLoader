@@ -1,8 +1,18 @@
 const npmRunScript = require("npm-run-script");
+const fs = require('fs-extra');
+const path = require('path');
 
-module.exports = function buildFiles() {
-    return new Promise((resolve, reject) => {
-        const child = npmRunScript('brunch b -p');
+async function copyConfig(modPath) {
+  await fs.copy(path.join(__dirname, 'brunch-config.js'), path.join(modPath, 'brunch-config.js'))
+  await fs.copy(path.join(__dirname, 'brunch-package.json'), path.join(modPath, 'package.json'))
+}
+
+module.exports = async function buildFiles(modPath) {
+  try{
+    await copyConfig(modPath)
+
+    await new Promise((resolve, reject) => {
+        const child = npmRunScript('(cd ' + modPath + ' && brunch b -p)');
         child.once('error', (error) => {
             //console.trace(error);
             //process.exit(1);
@@ -15,4 +25,8 @@ module.exports = function buildFiles() {
             resolve(exitCode)
         });
     })
+  }
+  catch(err){
+    console.error(err);
+  }
 }

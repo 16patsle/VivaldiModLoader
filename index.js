@@ -3,17 +3,30 @@ const injectCustom = require('./injectCustom')
 const buildFiles = require('./buildFiles')
 const installFiles = require('./installFiles')
 const path = require('path')
+const homedir = require('os')
+  .homedir()
 
-module.exports = async function loadMods() {
+module.exports = async function loadMods(vivaldiPath) {
+  try {
     console.log('Started loading mods')
 
-    await getBrowser()
+    if (!typeof vivaldiPath === "string") {
+      vivaldiPath = null
+    }
 
-    await injectCustom(path.join(__dirname, 'custom/browser.html'));
+    modPath = path.join(homedir, '.vivaldimods');
 
-    await buildFiles()
+    await getBrowser(modPath, vivaldiPath)
 
-    await installFiles()
+    await injectCustom(modPath);
+
+    await buildFiles(modPath)
+
+    await installFiles(modPath, vivaldiPath)
 
     console.log('Finished!')
+  } catch (err) {
+    console.log(err)
+  }
+
 }

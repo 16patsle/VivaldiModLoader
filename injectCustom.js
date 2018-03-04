@@ -3,10 +3,13 @@ const {
     JSDOM
 } = jsdom;
 const fs = require('fs-extra')
+const path = require('path')
 
-module.exports = async function injectCustom(path) {
+module.exports = async function injectCustom(modPath) {
     try {
-        const dom = await JSDOM.fromFile(path)
+      modPath = path.join(modPath, 'custom/browser.html')
+
+        const dom = await JSDOM.fromFile(modPath)
 
         if (!dom.window.document.querySelector('link[href="custom.css"]')) {
             const customCss = dom.window.document.createElement('link')
@@ -28,7 +31,7 @@ module.exports = async function injectCustom(path) {
 
         const html = dom.serialize()
 
-        fs.writeFile(path, html)
+        fs.writeFile(modPath, html)
 
         dom.window.close()
     } catch (err) {

@@ -1,0 +1,13 @@
+{
+  "name": "vivaldi-mods",
+  "version": "1.0.0",
+  "description": "Your mods for Vivaldi",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "brunch": "^2.10.12"
+  }
+}
