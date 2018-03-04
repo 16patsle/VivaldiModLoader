@@ -13,8 +13,7 @@ module.exports = async function getBrowserPath() {
             appdir = path.join('/Applications', 'Vivaldi.app', 'Contents', 'Versions')
             appdirLast = path.join('Vivaldi Framework.framework', 'Resources', 'vivaldi')
         } else if (process.platform === "linux") {
-            appdir = ''
-            appdirLast = ''
+            appdir = path.join('/opt','vivaldi','resources','vivaldi')
         }
 
         const dir = await fs.readdir(appdir)
@@ -27,7 +26,12 @@ module.exports = async function getBrowserPath() {
         }
         newDir.sort()
 
-        return path.join(appdir, newDir[newDir.length - 1], appdirLast)
+        if(process.platform === "win32"||process.platform === "darwin"){
+          return path.join(appdir, newDir[newDir.length - 1], appdirLast)
+        } else {
+          return appdir
+        }
+
     } catch (err) {
         console.error(err)
     }

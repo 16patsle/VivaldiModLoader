@@ -36,4 +36,4 @@ You can also import it from node, and use it that way.
 ## Compatibility
 Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
 
-For Linux, you will need to pass in a custom install path (at the moment).
+For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`.
