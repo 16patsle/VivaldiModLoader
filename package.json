@@ -11,6 +11,7 @@
   },
   "author": "Patrick Sletvold",
   "license": "MIT",
+  "repository": "http://github.com/16patsle/VivaldiModLoader",
   "dependencies": {
     "brunch": "^2.10.12",
     "commander": "^2.14.1",
