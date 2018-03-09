@@ -1,20 +1,18 @@
 const fs = require('fs-extra')
 const path = require('path')
-const getBrowserPath = require('./getBrowserPath')
 
-async function copyBrowserFile(modPath, browserPath) {
+async function copyBrowserFile(modPath, vivaldiPath) {
     try {
-        await fs.copy(path.join(browserPath, 'browser.html'), path.join(modPath, 'custom', 'browser.html'))
+        await fs.copy(path.join(vivaldiPath, 'browser.html'), path.join(modPath, 'custom', 'browser.html'))
     } catch (err) {
         console.error(err)
     }
 }
 
-module.exports = async function getBrowser(modPath, customPath) {
+module.exports = async function getBrowser(modPath, vivaldiPath) {
     try {
-        const browserPath = customPath || await getBrowserPath()
-        await copyBrowserFile(modPath, browserPath)
-        console.log('Fetched browser.html from ' + browserPath)
+        await copyBrowserFile(modPath, vivaldiPath)
+        console.log('Fetched browser.html from ' + vivaldiPath)
     } catch (err) {
         console.error(err)
     }

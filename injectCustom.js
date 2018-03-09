@@ -1,40 +1,33 @@
 const jsdom = require("jsdom");
 const {
-    JSDOM
+  JSDOM
 } = jsdom;
 const fs = require('fs-extra')
 const path = require('path')
 
 module.exports = async function injectCustom(modPath) {
-    try {
-      modPath = path.join(modPath, 'custom/browser.html')
+  try {
+    modPath = path.join(modPath, 'custom/browser.html')
 
-        const dom = await JSDOM.fromFile(modPath)
+    const dom = await JSDOM.fromFile(modPath)
 
-        if (!dom.window.document.querySelector('link[href="custom.css"]')) {
-            const customCss = dom.window.document.createElement('link')
-            customCss.setAttribute('rel', 'stylesheet')
-            customCss.setAttribute('href', 'custom.css')
-            dom.window.document.head.appendChild(customCss)
-            console.log('Injected custom CSS into browser.html');
-        } else {
-            console.log('Custom CSS already injected into browser.html');
-        }
-        if (!dom.window.document.querySelector('script[src="custom.js"]')) {
-            const customJs = dom.window.document.createElement('script')
-            customJs.setAttribute('src', 'custom.js')
-            dom.window.document.body.appendChild(customJs)
-            console.log('Injected custom JS into browser.html');
-        } else {
-            console.log('Custom JS already injected into browser.html');
-        }
+    const customCss = dom.window.document.createElement('link')
+    customCss.setAttribute('rel', 'stylesheet')
+    customCss.setAttribute('href', 'custom.css')
+    dom.window.document.head.appendChild(customCss)
+    console.log('Injected custom CSS into browser.html');
 
-        const html = dom.serialize()
+    const customJs = dom.window.document.createElement('script')
+    customJs.setAttribute('src', 'custom.js')
+    dom.window.document.body.appendChild(customJs)
+    console.log('Injected custom JS into browser.html');
 
-        fs.writeFile(modPath, html)
+    const html = dom.serialize()
 
-        dom.window.close()
-    } catch (err) {
-        console.error(err)
-    }
+    fs.writeFile(modPath, html)
+
+    dom.window.close()
+  } catch (err) {
+    console.error(err)
+  }
 }

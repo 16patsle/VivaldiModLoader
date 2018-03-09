@@ -2,6 +2,9 @@ const getBrowser = require('./getBrowser')
 const injectCustom = require('./injectCustom')
 const buildFiles = require('./buildFiles')
 const installFiles = require('./installFiles')
+const isInjected = require('./isInjected')
+const backupBrowserFile = require('./backupBrowserFile')
+const getBrowserPath = require('./getBrowserPath')
 const path = require('path')
 const homedir = require('os')
   .homedir()
@@ -13,14 +16,26 @@ module.exports = async function loadMods(vivaldiPath) {
     if (typeof vivaldiPath === "string") {
       vivaldiPath = path.normalize(vivaldiPath)
     } else {
-      vivaldiPath = null
+      vivaldiPath = await getBrowserPath()
     }
 
     modPath = path.join(homedir, '.vivaldimods');
 
     await getBrowser(modPath, vivaldiPath)
 
-    await injectCustom(modPath);
+    const injected = await isInjected(modPath)
+
+    if(!injected.both){
+      await injectCustom(modPath)
+
+      await backupBrowserFile(vivaldiPath)
+    } else {
+      if(injected.cssInjected){
+        console.log('Custom CSS already injected into browser.html');
+      } else if (injected.jsInjected) {
+        console.log('Custom JS already injected into browser.html');
+      }
+    }
 
     await buildFiles(modPath)
 
