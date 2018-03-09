@@ -9,7 +9,7 @@ const path = require('path')
 const homedir = require('os')
   .homedir()
 
-module.exports = async function loadMods(vivaldiPath) {
+module.exports = async function installMods(vivaldiPath) {
   try {
     console.log('Started loading mods')
 
@@ -32,7 +32,8 @@ module.exports = async function loadMods(vivaldiPath) {
     } else {
       if(injected.cssInjected){
         console.log('Custom CSS already injected into browser.html');
-      } else if (injected.jsInjected) {
+      }
+      if (injected.jsInjected) {
         console.log('Custom JS already injected into browser.html');
       }
     }

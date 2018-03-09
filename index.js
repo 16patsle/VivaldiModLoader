@@ -1,4 +1,4 @@
-const install = require('./loadMods');
+const install = require('./installMods');
 const list = require('./listMods');
 const add = require('./addMod');
 const remove = require('./removeMod');

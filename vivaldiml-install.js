@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const program = require('commander');
-const loadMods = require('./loadMods');
+const installMods = require('./installMods');
 
 program
   .option('-d, --dir <directory>', 'Vivaldi install directory, if not default')
   .parse(process.argv);
 
-loadMods(program.dir)
+installMods(program.dir)
