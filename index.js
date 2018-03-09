@@ -1,34 +1,11 @@
-const getBrowser = require('./getBrowser')
-const injectCustom = require('./injectCustom')
-const buildFiles = require('./buildFiles')
-const installFiles = require('./installFiles')
-const path = require('path')
-const homedir = require('os')
-  .homedir()
+const install = require('./loadMods');
+const list = require('./listMods');
+const add = require('./addMod');
+const remove = require('./removeMod');
 
-module.exports = async function loadMods(vivaldiPath) {
-  try {
-    console.log('Started loading mods')
-
-    if (typeof vivaldiPath === "string") {
-      vivaldiPath = path.normalize(vivaldiPath)
-    } else {
-      vivaldiPath = null
-    }
-
-    modPath = path.join(homedir, '.vivaldimods');
-
-    await getBrowser(modPath, vivaldiPath)
-
-    await injectCustom(modPath);
-
-    await buildFiles(modPath)
-
-    await installFiles(modPath, vivaldiPath)
-
-    console.log('Finished!')
-  } catch (err) {
-    console.log(err)
-  }
-
+module.exports = {
+  install,
+  list,
+  add,
+  remove
 }

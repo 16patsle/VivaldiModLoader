@@ -31,7 +31,13 @@ To run the non-cli version, clone the repo and run:
 node run.js
 ```
 
-You can also import it from node, and use it that way.
+You can also import it from node, and use it that way (as soon as I publish it on npm):
+```javascript
+const vivaldiml = require('vivaldiml')
+
+vivaldiml.install()
+```
+
 
 ## Compatibility
 Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
