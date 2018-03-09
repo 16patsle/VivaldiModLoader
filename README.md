@@ -26,7 +26,18 @@ If you want a list of all the mods you have installed, run:
 vivaldiml list
 ```
 
-To run the non-cli version, clone the repo and run:
+You can use the add and remove commands to add a file to the mods folder. They even take mulitple files at once!
+```
+vivaldiml add file.js file.css
+vivaldiml remove file.js file.css
+```
+
+To remove any trace of the mods from the vivaldi folder, use uninstall
+```
+vivaldiml uninstall
+```
+
+To simply install using the non-cli version, clone the repo and run:
 ```
 node run.js
 ```
@@ -42,4 +53,4 @@ vivaldiml.install()
 ## Compatibility
 Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
 
-For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`.
+For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`, but otherwise ut should work, in theory.
