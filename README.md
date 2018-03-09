@@ -7,11 +7,11 @@ Saves files in `~/.vivaldimods`. Mods are saved in `~/.vivaldimods/mods`, while 
 ## Usage
 Install globally:
 ```
-npm install -g vivaldiml
+npm install -g vivaldi-modloader
 ```
 (not yet published)
 
-To install mods:
+The mod loader exposes a CLI command called vivaldiml. To install mods:
 ```
 vivaldiml install
 ```
@@ -54,3 +54,5 @@ vivaldiml.install()
 Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
 
 For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`, but otherwise ut should work, in theory.
+
+Due to the way things are done at the moment, the build part of the mod loader might not work when used on a system without npm. This will be improved in the future.
