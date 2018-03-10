@@ -1,6 +1,6 @@
 {
   "name": "vivaldi-modloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mod loader for the Vivaldi browser",
   "main": "index.js",
   "bin": {
