@@ -8,6 +8,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "brunch": "^2.10.12"
+    "brunch": "^2.10.12",
+    "npm": "^5.7.1"
   }
 }
