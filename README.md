@@ -2,14 +2,13 @@
 
 A mod loader for the Vivaldi browser.
 
-Saves files in `~/.vivaldimods`. Mods are saved in `~/.vivaldimods/mods`, while the files are saved to `~/.vivaldimods` after being built.
+Saves files in `~/.vivaldimods`. Mods are saved in `~/.vivaldimods/mods`, while the files are saved to `~/.vivaldimods/custom` after being built.
 
 ## Usage
 Install globally:
 ```
 npm install -g vivaldi-modloader
 ```
-(not yet published)
 
 The mod loader exposes a CLI command called vivaldiml. To install mods:
 ```
@@ -37,22 +36,20 @@ To remove any trace of the mods from the vivaldi folder, use uninstall
 vivaldiml uninstall
 ```
 
-To simply install using the non-cli version, clone the repo and run:
+You can also install it locally, and import it from a node script:
 ```
-node run.js
+npm install vivaldi-modloader
 ```
-
-You can also import it from node, and use it that way (as soon as I publish it on npm):
 ```javascript
-const vivaldiml = require('vivaldiml')
+const vivaldiml = require('vivaldi-modloader')
 
 vivaldiml.install()
 ```
 
 
 ## Compatibility
-Tested on macOS, but should work on Windows too if Vivaldi is installed at the default location.
+Tested on macOS, but should work on Windows too if Vivaldi is installed at the default (system-wide) location.
 
-For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`, but otherwise ut should work, in theory.
+For Linux, you will need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`, but otherwise it should work (in theory, not tested).
 
 Due to the way the build process works, there might be issues with using the mod loader on systems where npm is not available, for example if this program is run from an Electron program. I've done my best to work around this issue, but problems may still occur.
