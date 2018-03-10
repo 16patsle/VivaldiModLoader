@@ -55,4 +55,4 @@ Tested on macOS, but should work on Windows too if Vivaldi is installed at the d
 
 For Linux, you might need to pass in a custom install path if Vivaldi is not installed in `/opt/vivaldi/resources/vivaldi`, but otherwise ut should work, in theory.
 
-Due to the way things are done at the moment, the build part of the mod loader might not work when used on a system without npm. This will be improved in the future.
+Due to the way the build process works, there might be issues with using the mod loader on systems where npm is not available, for example if this program is run from an Electron program. I've done my best to work around this issue, but problems may still occur.
