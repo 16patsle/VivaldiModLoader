@@ -1,3 +1,3 @@
 const vivaldiml = require('./index')
 
-vivaldiml.installMods()
+vivaldiml.install()
