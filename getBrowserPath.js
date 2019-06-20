@@ -12,6 +12,16 @@ module.exports = async function getBrowserPath() {
         } else if (process.platform === "darwin") {
             appdir = path.join('/Applications', 'Vivaldi.app', 'Contents', 'Versions')
             appdirLast = path.join('Vivaldi Framework.framework', 'Resources', 'vivaldi')
+            try{
+                await fs.readdir(appdir)
+            } catch(err){
+                if(err.code === 'ENOENT'){
+                    appdir = path.join('/Applications', 'Vivaldi.app', 'Contents', 'Frameworks', 'Vivaldi Framework.framework', 'Versions')
+                    appdirLast = path.join('Resources', 'vivaldi')
+                } else {
+                    console.error(err)
+                }
+            }
         } else if (process.platform === "linux") {
             appdir = path.join('/opt','vivaldi','resources','vivaldi')
         }
